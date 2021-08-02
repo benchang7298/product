@@ -1,8 +1,14 @@
+# Read the file
 product = []
-#with open('product.csv', 'r') as f:
-#    for line in f:
-#        s = line.strip().split(',')
-#        print(s)
+with open('product.csv', 'r', encoding='utf-8') as f:
+    for line in f:
+        if 'PRODUCT,PRICE' in line:
+            continue
+        name, price = line.strip().split(',') #先把空格拿掉，再用取逗號換行
+        product.append([name, price])   
+print(product)
+
+# Let user enter the data
 while True:
     name = input('please enter the name of product: ')
     if name == 'q':
@@ -11,9 +17,11 @@ while True:
     product.append([name, price])   
 print(product)    
 
+# List are products and price what they buy
 for p in product:
     print(p[0], 'price is', p[1])
 
+# Save to excel
 with open('product.csv', 'w', encoding='utf-8') as f:
     f.write('PRODUCT,PRICE\n')
     for p in product:
