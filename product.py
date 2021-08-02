@@ -1,12 +1,18 @@
-# Read the file
+import os
+
 product = []
-with open('product.csv', 'r', encoding='utf-8') as f:
-    for line in f:
-        if 'PRODUCT,PRICE' in line:
-            continue
+# Read the file
+if os.path.isfile('product.csv'): #check if the file is exist
+    print('You Got it the file is exist')
+    with open('product.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            if 'PRODUCT,PRICE' in line:
+                continue
         name, price = line.strip().split(',') #先把空格拿掉，再用取逗號換行
         product.append([name, price])   
-print(product)
+    print(product)
+else:
+    price('There is not......')    
 
 # Let user enter the data
 while True:
